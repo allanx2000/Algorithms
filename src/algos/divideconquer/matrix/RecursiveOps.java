@@ -18,6 +18,12 @@ public class RecursiveOps implements MatrixOps {
 
     }
 
+    /**
+     * Returns the N to use to prepare arrays and calculate the values
+     * @param a
+     * @param b
+     * @return
+     */
     private int getN(Matrix a, Matrix b) {
         int i = 0;
 
@@ -36,6 +42,13 @@ public class RecursiveOps implements MatrixOps {
         return pow;
     }
 
+    /**
+     * Helper method to convert and prepare the matrices for multiplication
+     * @param a
+     * @param b
+     * @param n Size of the result matrix
+     * @return
+     */
     private Matrix multiply(Matrix a, Matrix b, int n)
     {
         Matrix c;
@@ -61,6 +74,11 @@ public class RecursiveOps implements MatrixOps {
         return c;
     }
 
+    /**
+     * Converts and resizes an array matrix to a Matrix
+     * @param array
+     * @return
+     */
     private Matrix toMatrix(double[][] array) {
         int col = array[0].length;
         int row = array.length;
@@ -77,6 +95,14 @@ public class RecursiveOps implements MatrixOps {
         return matrix;
     }
 
+    /**
+     * Gets the "actual" length of a row/column
+     * @param array
+     * @param row
+     * @param col
+     * @param isRowDimension whether you want the row or column length
+     * @return
+     */
     private int clean(double[][] array, int row, int col, boolean isRowDimension) {
 
         int loop1 = isRowDimension? row : col;
@@ -117,6 +143,13 @@ public class RecursiveOps implements MatrixOps {
         return array;
     }
 
+    /**
+     * Multiplies 2 matrices of N using partitioning
+     * @param a
+     * @param b
+     * @param n
+     * @return
+     */
     private double[][] multiply(double[][] a, double[][] b, int n)
     {
         double[][] c;
@@ -174,6 +207,15 @@ public class RecursiveOps implements MatrixOps {
         return c;
     }
 
+    /**
+     * Creates a new NxN matrix using submatrices of N/2cN/2
+     * @param c_11 Top-Left, Partition 1
+     * @param c_12 Top-Right, Partition 2
+     * @param c_21 Bottom-Left, Partition 3
+     * @param c_22 Bottom-Right, Partition 4
+     * @param n
+     * @return
+     */
     private double[][] join(double[][] c_11, double[][] c_12, double[][] c_21, double[][] c_22, int n) {
         double[][] array = new double[n][n];
 
@@ -215,6 +257,13 @@ public class RecursiveOps implements MatrixOps {
         return array;
     }
 
+    /**
+     * Returns a new matrix with the sum of A, B
+     * @param a
+     * @param b
+     * @param n
+     * @return
+     */
     private double[][] add(double[][] a, double[][] b, int n) {
         double[][] result = new double[n][n];
 
@@ -229,6 +278,13 @@ public class RecursiveOps implements MatrixOps {
         return result;
     }
 
+    /**
+     * Helper function for getPartition
+     * @param a matrix to get partitions from
+     * @param partitionId the partition to return
+     * @param partitionSize the size of the partition to be returned
+     * @return
+     */
     private double[][] getPartition(double[][] a, int partitionId, int partitionSize) {
         int r_from, r_to, c_from, c_to;
 
@@ -272,6 +328,16 @@ public class RecursiveOps implements MatrixOps {
         return getPartition(a, r_from, r_to, c_from, c_to, partitionSize);
     }
 
+    /**
+     * Creates a matrix of Size x Size by copying the values from the input matrix
+     * @param a Input Matrix
+     * @param r_from
+     * @param r_to
+     * @param c_from
+     * @param c_to
+     * @param size Size of output matrix
+     * @return
+     */
     private double[][] getPartition(double[][] a, int r_from, int r_to, int c_from, int c_to, int size) {
         double[][] array = new double[size][size];
 
@@ -284,16 +350,6 @@ public class RecursiveOps implements MatrixOps {
         }
 
         return array;
-    }
-
-    private boolean isSupported(Matrix a, Matrix b) {
-
-        if (a.getColumnsCount() == b.getRowsCount() && b.getColumnsCount() == a.getRowsCount() && a.getRowsCount() == b.getRowsCount())
-        {
-            return isPower2(a.getRowsCount());
-        }
-
-        return false;
     }
 
 
