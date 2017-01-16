@@ -1,7 +1,5 @@
 package algos.divideconquer.matrix;
 
-import java.security.InvalidParameterException;
-
 /**
  * Created by Allan on 1/15/2017.
  */
@@ -268,7 +266,7 @@ public class SquareOps implements MatrixOps {
                 c_to = a[0].length;
                 break;
             default:
-                throw new InvalidParameterException("Partition must be 1-4");
+                throw new IllegalArgumentException("Partition must be 1-4");
         }
 
         return getPartition(a, r_from, r_to, c_from, c_to, partitionSize);
