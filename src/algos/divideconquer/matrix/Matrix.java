@@ -104,4 +104,12 @@ public class Matrix {
             }
         }
     }
+
+    public double getCell(int r, int c) {
+
+        if (r >= rows || c >= cols) //For matrix multiply
+            return 0;
+        else
+            return matrix[r][c];
+    }
 }

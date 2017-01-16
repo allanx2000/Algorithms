@@ -12,7 +12,8 @@ public class MatrixClient {
         Matrix a;
         Matrix b;
 
-        ops = new StandardOps();
+        //ops = new StandardOps();
+        ops = new SquareOps();
 
         //a = new Matrix(2,2);
         //a.setMatrix(1,2,3,4);
@@ -26,11 +27,12 @@ public class MatrixClient {
                 1,-1,2,
                 0,-3,1);
 
-        b = new Matrix(3,1);
-        b.setMatrix(2,1,0);
+        b = new Matrix(3,3);
+        b.setMatrix(1,1,1,
+                2,2,2,
+                3,3,3);
 
         doMultiply(a,b, ops);
-
     }
 
     private static void doMultiply(Matrix a, Matrix b, MatrixOps ops) {
