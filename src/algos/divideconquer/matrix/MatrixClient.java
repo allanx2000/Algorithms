@@ -13,7 +13,7 @@ public class MatrixClient {
         Matrix b;
 
         //ops = new StandardOps();
-        ops = new SquareOps();
+        ops = new RecursiveOps();
 
         //a = new Matrix(2,2);
         //a.setMatrix(1,2,3,4);

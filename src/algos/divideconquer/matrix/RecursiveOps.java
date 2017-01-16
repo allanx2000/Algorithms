@@ -3,7 +3,7 @@ package algos.divideconquer.matrix;
 /**
  * Created by Allan on 1/15/2017.
  */
-public class SquareOps implements MatrixOps {
+public class RecursiveOps implements MatrixOps {
     @Override
     public Matrix multiply(Matrix a, Matrix b) {
 
