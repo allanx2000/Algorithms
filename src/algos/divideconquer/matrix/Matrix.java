@@ -1,9 +1,10 @@
 package algos.divideconquer.matrix;
 
+import utils.Formatters;
 import utils.Printer;
 
 import java.security.InvalidParameterException;
-import java.text.DecimalFormat;
+
 
 /**
  * Created by Allan on 1/15/2017.
@@ -26,9 +27,6 @@ public class Matrix {
         print(1);
     }
 
-
-    private static DecimalFormat df = new DecimalFormat("0.00");
-
     public void print(int space)
     {
         StringBuilder sb = new StringBuilder();
@@ -42,7 +40,7 @@ public class Matrix {
             for (int c = 0; c < cols; c++)
             {
                 double value = matrix[r][c];
-                String strValue = df.format(value);
+                String strValue = Formatters.decimalFormat.format(value);
 
                 Printer.print(strValue + SPACE);
             }
