@@ -70,48 +70,6 @@ public class SquareOps implements MatrixOps {
         col = clean(array, row, col, false);
         row = clean(array, row, col, true);
 
-        /*
-        //Clean columns
-        for (int c = col - 1; c >= 0; c--)
-        {
-            boolean exit = false;
-
-            for (int r = 0; r < row; r++)
-            {
-                if (array[r][c] != 0)
-                {
-                    exit = true;
-                    break;
-                }
-            }
-
-            if (exit)
-                break;
-
-            col -= 1;
-        }
-
-        //Clean Rows
-        for (int r = row - 1; r >= 0; r--)
-        {
-            boolean exit = false;
-            for (int c = 0; c < col; c++)
-            {
-                if (array[r][c] != 0)
-                {
-                    exit = true;
-                    break;
-                }
-            }
-
-            if (exit)
-                break;
-
-            row -= 1;
-        }
-
-        */
-
         Matrix matrix = new Matrix(row,col);
 
         for (int r = 0; r < row; r++)
@@ -175,41 +133,42 @@ public class SquareOps implements MatrixOps {
         else
         {
             c = new double[n][n];
-
-            int divide = n/2;
-
+            int partitionSize = n/2;
 
             //1 2
             //3 4
-            double[][] p_a11 = getPartition(a, 1, divide);
-            double[][] p_a12 = getPartition(a, 2, divide);
-            double[][] p_a21 = getPartition(a, 3, divide);
-            double[][] p_a22 = getPartition(a, 4, divide);
 
-            double[][] p_b11 = getPartition(b, 1, divide);
-            double[][] p_b12 = getPartition(b, 2, divide);
-            double[][] p_b21 = getPartition(b, 3, divide);
-            double[][] p_b22 = getPartition(b, 4, divide);
+            //11 12
+            //21 22
+            double[][] p_a11 = getPartition(a, 1, partitionSize);
+            double[][] p_a12 = getPartition(a, 2, partitionSize);
+            double[][] p_a21 = getPartition(a, 3, partitionSize);
+            double[][] p_a22 = getPartition(a, 4, partitionSize);
+
+            double[][] p_b11 = getPartition(b, 1, partitionSize);
+            double[][] p_b12 = getPartition(b, 2, partitionSize);
+            double[][] p_b21 = getPartition(b, 3, partitionSize);
+            double[][] p_b22 = getPartition(b, 4, partitionSize);
 
             double[][] c_11 = add(
-                    multiply(p_a11, p_b11, divide),
-                    multiply(p_a12, p_b21, divide),
-                    divide);
+                    multiply(p_a11, p_b11, partitionSize),
+                    multiply(p_a12, p_b21, partitionSize),
+                    partitionSize);
 
             double[][] c_12 = add(
-                    multiply(p_a11, p_b12, divide),
-                    multiply(p_a12, p_b22, divide),
-                    divide);
+                    multiply(p_a11, p_b12, partitionSize),
+                    multiply(p_a12, p_b22, partitionSize),
+                    partitionSize);
 
             double[][] c_21 = add(
-                    multiply(p_a21, p_b11, divide),
-                    multiply(p_a22, p_b21, divide),
-                    divide);
+                    multiply(p_a21, p_b11, partitionSize),
+                    multiply(p_a22, p_b21, partitionSize),
+                    partitionSize);
 
             double[][] c_22 = add(
-                    multiply(p_a21, p_b12, divide),
-                    multiply(p_a22, p_b22, divide),
-                    divide);
+                    multiply(p_a21, p_b12, partitionSize),
+                    multiply(p_a22, p_b22, partitionSize),
+                    partitionSize);
 
             c = join(c_11, c_12, c_21, c_22, n);
         }
